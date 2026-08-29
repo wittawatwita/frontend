@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
-const API_URL = "https://api.itdev.cmtc.ac.th/users";
+const API_URL = "https://6a7e6fde3183f5fd884a1536.mockapi.io/api/Fullname";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);

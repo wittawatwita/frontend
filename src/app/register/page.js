@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // 1. นำเข้า useRouter
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -13,6 +14,7 @@ import Swal from "sweetalert2";
 export const dynamic = "force-dynamic";
 
 export default function Register() {
+  const router = useRouter(); // 2. ประกาศเรียกใช้งาน useRouter
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -45,7 +47,7 @@ export default function Register() {
     }
 
     try {
-      const response = await fetch('https://api.itdev.cmtc.ac.th/users', {
+      const response = await fetch('https://6a7e6fde3183f5fd884a1536.mockapi.io/api/Fullname', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -73,7 +75,9 @@ export default function Register() {
           text: 'คุณได้ลงทะเบียนแล้ว สามารถเข้าสู่ระบบได้ทันที',
           confirmButtonText: "ตกลง",
           confirmButtonColor: "#2563eb"
-          });
+        });
+
+        router.push("/login"); // 3. Redirect ไปยังหน้า login ทันทีเมื่อผู้ใช้กดปุ่มตกลง
       } else if (response.status === 400) {
         await Swal.fire({
           icon: 'warning',
@@ -93,7 +97,7 @@ export default function Register() {
       } else {
         await Swal.fire({
           icon: 'error',
-          title: `เกิดข้อผิดพลาดทางเคลียข่าย`,
+          title: `เกิดข้อผิดพลาดทางเครือข่าย`,
           text: result.message || "ไม่ทราบสาเหตุ กรุณาลองใหม่อีกครั้ง",
           confirmButtonText: "ตกลง",
           confirmButtonColor: "#dc2626"

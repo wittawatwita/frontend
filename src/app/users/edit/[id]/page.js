@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
-const API_URL = "https://api.itdev.cmtc.ac.th/users";
+const API_URL = "https://6a7e6fde3183f5fd884a1536.mockapi.io/api/Fullname";
 
 export default function RegisterPage() {
   const params = useParams();
